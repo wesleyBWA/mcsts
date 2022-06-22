@@ -23,6 +23,8 @@ public class CategoriaDTO implements Serializable {
 	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
 	
+	
+	
 	public CategoriaDTO() {
 		
 	}
