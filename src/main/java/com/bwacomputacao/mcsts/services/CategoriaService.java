@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.bwacomputacao.mcsts.domain.Categoria;
+import com.bwacomputacao.mcsts.dto.CategoriaDTO;
 import com.bwacomputacao.mcsts.repositories.CategoriaRepository;
 import com.bwacomputacao.mcsts.services.exception.DataIntegrityException;
 import com.bwacomputacao.mcsts.services.exception.ObjectNotFoundException;
@@ -61,5 +62,7 @@ public class CategoriaService {
 	    return repo.findAll(pageRequest);
 	}
 
-	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
 }
