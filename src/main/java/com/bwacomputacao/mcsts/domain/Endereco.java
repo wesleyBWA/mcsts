@@ -2,19 +2,22 @@ package com.bwacomputacao.mcsts.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 @Entity
+
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,19 +31,19 @@ public class Endereco implements Serializable {
 	private String cep;
 	
 	@JsonIgnore
-	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
-	@ManyToOne
-	@JoinColumn(name="cidade_id")
-	private Cidade cidade;
 	
-	public Endereco() {	
+	@JoinColumn(name="cidade_id")
+	private Optional<Cidade> cidade;
+	
+	
+	public Endereco(Object object, String string, String string2, String string3, String string4, String string5, Cliente cli, Optional<Cidade> cid) {	
 	}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
-			Cliente cliente, Cidade cidade) {
+			Cliente cliente, Cidade cid) {
 		super();
 		this.id = id;
 		Logradouro = logradouro;
@@ -49,7 +52,7 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 		this.cep = cep;
 		this.cliente = cliente;
-		this.setCidade(cidade);
+		this.setCidade(cid);
 	}
 
 	public Integer getId() {
@@ -108,12 +111,12 @@ public class Endereco implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Cidade getCidade() {
+	public Optional<Cidade> getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
+	public void setCidade(Cidade cid) {
+		this.cidade = Optional.of((cid));
 	}
 
 	@Override

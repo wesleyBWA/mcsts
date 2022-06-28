@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+
 import com.bwacomputacao.mcsts.domain.Categoria;
 import com.bwacomputacao.mcsts.dto.CategoriaDTO;
 import com.bwacomputacao.mcsts.repositories.CategoriaRepository;
@@ -31,10 +32,11 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto nao encontrado! id: " + id + ", Tipo: "+Categoria.class.getName()));
 	}
-	
+
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
+		
 	}
 	
 	public Categoria update(Categoria obj) {
