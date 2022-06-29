@@ -32,15 +32,15 @@ public class ClienteService {
 	
 
 	@Autowired
-	private EnderecoRepository enderecoRepository;
+	private EnderecoRepository enderecoRepository; 
+	
 	
 	public Cliente find(Integer id) {
 		 Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto nao encontrado! id: " + id + ", Tipo: "+ Cliente.class.getName()));
 	}
-	
- @Transactional
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		
 		obj.setId(null);
@@ -48,10 +48,8 @@ public class ClienteService {
 		 obj = repo.save(obj);
 		 enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
-		
-		
-				
 	}
+
 	 public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
 		updateData(newObj, obj);
@@ -106,7 +104,7 @@ public class ClienteService {
 		}
 		return cli;
 	}
-	
+	 
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
