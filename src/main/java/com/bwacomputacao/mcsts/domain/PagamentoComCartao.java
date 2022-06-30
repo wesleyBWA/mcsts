@@ -3,8 +3,10 @@ package com.bwacomputacao.mcsts.domain;
 import javax.persistence.Entity;
 
 import com.bwacomputacao.mcsts.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 	
